@@ -1,0 +1,21 @@
+.property-list-item {
+  margin-bottom: 20px;
+}
+
+.property-list-item-price {
+  display: inline-block;
+  font-size: 1.25em;
+  padding-left: 5px;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.property-list-item .property-list-item-button {
+  visibility: hidden;
+  margin-top: 1px;
+  width: 50%;
+}
+
+.property-list-item:hover .property-list-item-button {
+  visibility: visible;
+}
