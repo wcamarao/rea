@@ -1,31 +1,45 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
+import React from 'react';
 import PropertyListItem from './property-list-item';
 import PropTypes from 'prop-types';
+import { propertyShape } from '../shapes/property-shape';
 
-class PropertyList extends Component {
-  render() {
-    return (
-      <div className="property-list col-xs-6">
-        <h2>{this.props.title}</h2>
+const PropertyList = ({ all, saved, onAddClick, onRemoveClick }) => (
+  <div className="property-list container">
+    <div className="row">
 
-        {_.map(this.props.properties, (property) => {
-          return <PropertyListItem
+      <div className="col-xs-6">
+        <h2>All Properties</h2>
+        {all.map(property =>
+          <PropertyListItem
             key={property.id}
             property={property}
-            buttonClick={this.props.buttonClick}
-            buttonLabel={this.props.buttonLabel} />;
-        })}
+            buttonClick={() => onAddClick(property.id)}
+            buttonLabel="Add"
+            buttonColor="success" />
+        )}
       </div>
-    );
-  }
-}
+
+      <div className="col-xs-6">
+        <h2>Saved Properties</h2>
+        {saved.map(property =>
+          <PropertyListItem
+            key={property.id}
+            property={property}
+            buttonClick={() => onRemoveClick(property.id)}
+            buttonLabel="Remove"
+            buttonColor="danger" />
+        )}
+      </div>
+
+    </div>
+  </div>
+);
 
 PropertyList.propTypes = {
-  title: PropTypes.string.isRequired,
-  properties: PropTypes.array.isRequired,
-  buttonClick: PropTypes.func.isRequired,
-  buttonLabel: PropTypes.string.isRequired
+  all: PropTypes.arrayOf(propertyShape).isRequired,
+  saved: PropTypes.arrayOf(propertyShape).isRequired,
+  onAddClick: PropTypes.func.isRequired,
+  onRemoveClick: PropTypes.func.isRequired
 };
 
 export default PropertyList;
