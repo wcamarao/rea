@@ -44,9 +44,3 @@ describe('properties reducer', () => {
     });
   });
 });
-
-// A few more things that could be tested as complexity grows:
-// - Edge cases such as adding/removing unexisting properties
-// - Action mappings within `../actions` directory
-// - DOM manipulation, oftentimes not worthwhile
-// - E2E
